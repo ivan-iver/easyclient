@@ -1,0 +1,9 @@
+[default]
+name=Client
+
+[paypal]
+url = http://sandbox.paypal.com/url
+api = https://api-3t.sandbox.paypal.com/nvp
+user = paypal_user
+pwd = paypal_pwd
+signature = paypal_signature

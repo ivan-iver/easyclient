@@ -22,3 +22,6 @@ _testmain.go
 *.exe
 *.test
 *.prof
+
+# Archivo de configuración
+app.conf
