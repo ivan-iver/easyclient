@@ -1,6 +1,7 @@
 package core
 
 import (
+	"net/url"
 	"path"
 
 	"os"
@@ -45,8 +46,8 @@ func (self *Config) loadSettings() (err error) {
 	return
 }
 
-func (self Config) Url() string {
-	return self.Settings["url"]
+func (self Config) Url() (u *url.URL, err error) {
+	return url.Parse(self.Settings["url"])
 }
 
 func (self Config) Api() string {

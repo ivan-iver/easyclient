@@ -13,10 +13,15 @@ func main() {
 		log.Printf("Init: %v", err)
 	}
 	log.Printf("Config: %+v", config)
-	request := net.NewRequest(config)
+
+	var request *net.Request
+	if request, err = net.NewRequest(config); err != nil {
+		log.Printf("Request Error: %v", err)
+		return
+	}
 	if err = request.Send(); err != nil {
 		log.Printf("Error: %v", err)
 		return
 	}
-	log.Printf("Response: %v", request.Response)
+	log.Printf("Response: %v", request.Response())
 }

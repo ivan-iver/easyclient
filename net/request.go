@@ -1,13 +1,12 @@
 package net
 
 import (
-	"log"
 	"net/http"
 	"net/url"
 )
 
 type Request struct {
-	url      string
+	url      *url.URL
 	header   http.Header
 	_type    string
 	params   url.Values
@@ -15,15 +14,19 @@ type Request struct {
 	*Client
 }
 
-func NewRequest(config IConfig) *Request {
-	log.Printf("Url: %v", config.Url())
-	return &Request{
-		url:    config.Url(),
+func NewRequest(config IConfig) (req *Request, err error) {
+	var u *url.URL
+	if u, err = config.Url(); err != nil {
+		return
+	}
+	req = &Request{
+		url:    u,
 		Client: NewClient(),
 	}
+	return
 }
 
-func (self *Request) Url() string {
+func (self *Request) Url() *url.URL {
 	return self.url
 }
 

@@ -20,8 +20,9 @@ func (self *Client) Post(request IRequest) (response *http.Response, err error) 
 	var req *http.Request
 	body := strings.NewReader(request.Params().Encode())
 	url := request.Url()
+	log.Printf("Url -> %v", url)
 	log.Printf("Body: %v", body)
-	if req, err = http.NewRequest("POST", url, body); err != nil {
+	if req, err = http.NewRequest("POST", "url", body); err != nil {
 		return
 	}
 	req.Header = request.Header()

@@ -6,7 +6,7 @@ import (
 )
 
 type IConfig interface {
-	Url() string
+	Url() (*url.URL, error)
 	Api() string
 	User() string
 	Pwd() string
@@ -14,7 +14,7 @@ type IConfig interface {
 }
 
 type IRequest interface {
-	Url() string
+	Url() *url.URL
 	Header() http.Header
 	Type() string
 	Params() url.Values
